@@ -1,210 +1,58 @@
-import Head from 'next/head'
+import Item from "../Components/Item";
+import React, {useContext, useEffect} from "react";
+import {useRouter} from "next/router";
+import SessionContext from "../util/SessionContext";
+import fb from "../util/firebase-config";
 
 export default function Home() {
-  return (
-    <div className="max-w-3xl container mx-auto">
-      <Head>
-        <title>Fast Launch</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
 
-      <main>
-        <p className="text-2xl font-light">
-          Next + Tailwind
-        </p>
+    const router = useRouter()
+    const {isAuthenticated} = useContext(SessionContext)
 
-        <h1 className="text-5xl font-semibold">
-          Fast Launch
-        </h1>
-
-
-        <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className="card">
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className="card"
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="card"
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="logo" />
-        </a>
-      </footer>
-
-      <style jsx>{`
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+    useEffect(() => {
+        if (!isAuthenticated) {
+            router.push('/auth/login')
         }
+    }, [isAuthenticated])
 
-        main {
-          padding: 5rem 0;
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-        }
+    return (
+      <div className="min-h-screen flex-1 bg-gray-200 p-4 flex justify-center items-center">
+          <div className="bg-white w-full md:max-w-4xl rounded-lg shadow">
+              <div className="h-12 flex justify-between items-center border-b border-gray-200 m-4 pb-2">
+                  <div>
+                      <div className="text-xl font-bold text-gray-700">Shopping Cart</div>
+                      <div className="text-sm font-base text-gray-500">These are the items currently in your cart.</div>
+                  </div>
+              </div>
 
-        footer {
-          width: 100%;
-          height: 100px;
-          border-top: 1px solid #eaeaea;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+              <div className="px-6">
 
-        footer img {
-          margin-left: 0.5rem;
-        }
+                  <Item name="Apple" price={3} calories="500" />
+                  <Item name="Hamburger" price={4} calories="800" />
 
-        footer a {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-        }
+                  <div className="flex bg-gray-200 justify-center items-center h-16 p-4 my-6 rounded-lg shadow-inner">
+                      <div className="flex items-center border border-gray-400 p-2 border-dashed rounded cursor-pointer">
+                          <div>
+                              <svg className="text-gray-500 w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                   viewBox="0 0 24 24" stroke="currentColor">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                              </svg>
+                          </div>
+                          <div className="ml-1 text-gray-500 font-medium">Add another item</div>
+                      </div>
+                  </div>
 
-        a {
-          color: inherit;
-          text-decoration: none;
-        }
+                  <div className="flex h-16 p-4 my-6 rounded-lg border border-gray-100 shadow-md">
+                      <div>
+                          <div className="ml-2">
+                              <div className="font-semibold text-gray-600">Total: </div>
+                          </div>
+                      </div>
+                  </div>
 
-        .title a {
-          color: #0070f3;
-          text-decoration: none;
-        }
-
-        .title a:hover,
-        .title a:focus,
-        .title a:active {
-          text-decoration: underline;
-        }
-
-        .title {
-          margin: 0;
-          line-height: 1.15;
-          font-size: 4rem;
-        }
-
-        .title,
-        .description {
-          text-align: center;
-        }
-
-        .description {
-          line-height: 1.5;
-          font-size: 1.5rem;
-        }
-
-        code {
-          background: #fafafa;
-          border-radius: 5px;
-          padding: 0.75rem;
-          font-size: 1.1rem;
-          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-        }
-
-        .grid {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
-          margin-top: 3rem;
-        }
-
-        .card {
-          margin: 1rem;
-          flex-basis: 45%;
-          padding: 1.5rem;
-          text-align: left;
-          color: inherit;
-          text-decoration: none;
-          border: 1px solid #eaeaea;
-          border-radius: 10px;
-          transition: color 0.15s ease, border-color 0.15s ease;
-        }
-
-        .card:hover,
-        .card:focus,
-        .card:active {
-          color: #0070f3;
-          border-color: #0070f3;
-        }
-
-        .card h3 {
-          margin: 0 0 1rem 0;
-          font-size: 1.5rem;
-        }
-
-        .card p {
-          margin: 0;
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-
-        .logo {
-          height: 1em;
-        }
-
-        @media (max-width: 600px) {
-          .grid {
-            width: 100%;
-            flex-direction: column;
-          }
-        }
-      `}</style>
-
-      <style jsx global>{`
-        html,
-        body {
-          padding: 0;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
-            sans-serif;
-        }
-
-        * {
-          box-sizing: border-box;
-        }
-      `}</style>
-    </div>
+              </div>
+          </div>
+      </div>
   )
 }
