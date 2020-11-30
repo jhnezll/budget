@@ -36,6 +36,18 @@ export default function Home() {
         }
     ])
 
+    let prices = sampleData.map(sampleData => (
+        sampleData.price
+    ))
+
+    let totalPrice = prices.reduce((a, b) => a + b, 0)
+
+    console.log(totalPrice)
+
+    useEffect(() => {
+    //    Setup where data will change when something new is added.
+    })
+
     return (
       <div className="min-h-screen flex-1 bg-gray-200 p-4 flex justify-center items-center">
           <div className="bg-white w-full md:max-w-4xl rounded-lg shadow">
@@ -73,7 +85,7 @@ export default function Home() {
                   <div className="flex h-16 p-4 my-6 rounded-lg border border-gray-100 shadow-md">
                       <div>
                           <div className="ml-2">
-                              <div className="font-semibold text-gray-600">Total: </div>
+                              <div className="font-semibold text-gray-600">Total: ${totalPrice.toFixed(2)} </div>
                           </div>
                       </div>
                   </div>
