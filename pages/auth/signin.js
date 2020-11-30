@@ -19,17 +19,6 @@ export default function SignIn() {
     }
 
     return(
-        // <div>
-        //     <form onSubmit={e => {
-        //         e.preventDefault()
-        //         login(e.target.email.value, e.target.password.value)
-        //     }}>
-        //         <input name="email" id="email" type="email" placeholder="Email" disabled={loading} required/>
-        //         <input name="password" id="password" type="password" placeholder="Password" disabled={loading} required/>
-        //         <button type="submit" disabled={loading}>Signin</button>
-        //     </form>
-        // </div>
-
         <div className="h-screen flex justify-center items-center px-12 bg-gray-100">
             <div className="container mx-auto ">
                 <div className="flex justify-center px-6 y-12">
