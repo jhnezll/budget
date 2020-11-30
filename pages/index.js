@@ -1,5 +1,5 @@
 import Item from "../Components/Item";
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import SessionContext from "../util/SessionContext";
 import fb from "../util/firebase-config";
@@ -15,20 +15,47 @@ export default function Home() {
         }
     }, [isAuthenticated])
 
+    const [sampleData, setSampleData] = useState([
+        {
+            id: 0,
+            name: "Apple",
+            price: 1.0,
+            calories: 200
+        },
+        {
+            id: 1,
+            name: "Hamburger",
+            price: 5.00,
+            calories: 500
+        },
+        {
+            id: 2,
+            name: "Water",
+            price: 1.0,
+            calories: 0
+        }
+    ])
+
     return (
       <div className="min-h-screen flex-1 bg-gray-200 p-4 flex justify-center items-center">
           <div className="bg-white w-full md:max-w-4xl rounded-lg shadow">
               <div className="h-12 flex justify-between items-center border-b border-gray-200 m-4 pb-2">
                   <div>
-                      <div className="text-xl font-bold text-gray-700">Shopping Cart</div>
+                      <div className="text-xl font-bold text-gray-700">🛒 Shopping Cart</div>
                       <div className="text-sm font-base text-gray-500">These are the items currently in your cart.</div>
                   </div>
               </div>
 
               <div className="px-6">
 
-                  <Item name="Apple" price={3} calories="500" />
-                  <Item name="Hamburger" price={4} calories="800" />
+                  {sampleData.map(sample => (
+                      <Item
+                          key={sample.id}
+                          name={sample.name}
+                          price={sample.price.toFixed(2)}
+                          calories={sample.calories}
+                      />
+                  ))}
 
                   <div className="flex bg-gray-200 justify-center items-center h-16 p-4 my-6 rounded-lg shadow-inner">
                       <div className="flex items-center border border-gray-400 p-2 border-dashed rounded cursor-pointer">
