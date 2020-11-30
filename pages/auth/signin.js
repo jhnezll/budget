@@ -2,7 +2,7 @@ import fb from "../../util/firebase-config";
 import {useRouter} from "next/router";
 import {useState} from "react";
 
-export default function Signin() {
+export default function SignIn() {
 
     const router = useRouter()
     const [loading, toggleLoading] = useState(false)
@@ -39,7 +39,10 @@ export default function Signin() {
                             <h3 className="pt-4 text-2xl text-center">👋 Welcome Back</h3>
 
                             {/*Form*/}
-                            <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
+                            <form onSubmit={e => {
+                                e.preventDefault()
+                                login(e)}}
+                                className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
 
                                 {/*Email*/}
                                 <div className="mb-4">
@@ -47,9 +50,11 @@ export default function Signin() {
                                     <input
                                         className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                         id="email"
+                                        name="email"
                                         type="email"
                                         placeholder="Email"
-                                    />
+                                        disabled={loading}
+                                        required />
                                 </div>
 
                                 {/*Password*/}
@@ -58,32 +63,24 @@ export default function Signin() {
                                     <input
                                         className="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
                                         id="password"
+                                        name="password"
                                         type="password"
                                         placeholder="Password"
-                                    />
+                                        disabled={loading}
+                                        required />
                                 </div>
 
                                 {/*Sign In*/}
                                 <div className="mb-6 text-center">
-                                    <button className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline" type="button">Sign In</button>
+                                    <button className="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline" type="submit" disabled={loading}>Sign In</button>
                                 </div>
 
                                 <hr className="mb-6 border-t"/>
                                 <div className="text-center">
-                                    <a
-                                        className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-                                        href="./register.html"
-                                    >
-                                        Create an Account!
-                                    </a>
+                                    <a href="signup.js" className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800">Create an Account!</a>
                                 </div>
                                 <div className="text-center">
-                                    <a
-                                        className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-                                        href="./forgot-password.html"
-                                    >
-                                        Forgot Password?
-                                    </a>
+                                    <a href="#" className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800">Forgot Password?</a>
                                 </div>
                             </form>
                         </div>
