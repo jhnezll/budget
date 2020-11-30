@@ -1,30 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 💸 Welcome to Budget!
 
-## Getting Started
+Budget allows users to keep track of how many calories they are intaking while at the same time budgeting how much they are spending. 
+**It is built with people who want to lose weight but cannot afford more expensive ingredients in mind.** When the user goes to the 
+store to prepare dinner, they don’t have to stress about overspending too much. Simply by adding an item, Budget will grab information 
+from the database and show the user how many calories each item is. Input the price, and Budget will keep track of the both the 
+calories and total (with tax).
 
-First, run the development server:
+## Built With
+Below are the major frameworks, add-ons, and plugins that were used for this project. 
+ - 🍒Next.js
+ - 🦜Tailwind CSS
+ - 🔥 Firebase
 
-```bash
-npm run dev
-# or
-yarn dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Upcoming Ideas
+ - Ability to budget meals for the week
+ - Show coupons and active deals in your area
