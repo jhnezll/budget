@@ -3,4 +3,8 @@
 @tailwind components;
 /* purgecss end ignore */
 
+.registerBG {
+    background-image: url("https://cdn.dribbble.com/users/59947/screenshots/11959380/media/0f415cbbd278d2cbb6849d5b855c0d28.jpg");
+}
+
 @tailwind utilities;
